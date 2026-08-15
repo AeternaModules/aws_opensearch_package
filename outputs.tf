@@ -24,7 +24,7 @@ output "opensearch_packages_package_name" {
 }
 output "opensearch_packages_package_source" {
   description = "Map of package_source values across all opensearch_packages, keyed the same as var.opensearch_packages"
-  value       = { for k, v in aws_opensearch_package.opensearch_packages : k => v.package_source if v.package_source != null && length(v.package_source) > 0 }
+  value       = { for k, v in aws_opensearch_package.opensearch_packages : k => one(v.package_source) if v.package_source != null && length(v.package_source) > 0 }
 }
 output "opensearch_packages_package_type" {
   description = "Map of package_type values across all opensearch_packages, keyed the same as var.opensearch_packages"
